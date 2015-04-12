@@ -4,21 +4,23 @@
 ## Write a short comment describing this function
 
 makeCacheMatrix <- function(x = matrix()) {
-      inverse<<-NULL
+      i<-NULL
       #Store new matrix and reset cashed inverse
-      SetMatrix<-function(x) {
-            matrix<<-x
-            inverse<<-NULL
+      setMatrix<-function(y) {
+            x<<-y
+            i<<-NULL
       }
       #
-      setInverse<-function(y){inverse<<-y}
+      setInverse<-function(inverse){i<<-inverse}
       
       #return matrix (raw data)
-      getMatrix<-function() {matrix}
+      getMatrix<-function() {x}
       #return cashed inverse 
-      getInverse<-function() {Inverse}
+      getInverse<-function() {i}
       
-      
+      list(setMatrix = setMatrix, setInverse = setInverse,
+           getMatrix = getMatrix,
+           getInverse = getInverse)
       
 }
 
@@ -30,7 +32,7 @@ cacheSolve <- function(x, ...) {
       
       #Check if inverse is cashed. If so return 
       #casched data and exit function
-      inverce<-x$getInverse()
+      inverse<-x$getInverse()
       if(!is.null(inverse)) {
             message("cached data exist")
             return(inverse)
@@ -40,7 +42,7 @@ cacheSolve <- function(x, ...) {
       data<-x$getMatrix()
       inverse<-solve(data)
       #cash inverse
-      x$storeMatrix()
+      x$setInverse(inverse)
       #return  Inverse
       inverse
       
