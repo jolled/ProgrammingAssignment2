@@ -1,3 +1,14 @@
+#Example on how to run the code
+#1. Load file Source(pathToFile)
+#2. create a "special" matrix
+#     2.1 x<-makeCacheMatrix(matrix(c(3,2,1,2),2,2))   //set matrix when object is created, or
+#     2.2 x<-makeCacheMatrix()
+#         x$setMatrix(matrix(c(3,2,1,2),2,2))          //set the matrix afterwards
+#3. Calculate the inverse, cacheSolve(x)
+#4. Print the cached inverse x$getInverse()
+#5. Calculate the inverse again (cached version will be printed), cacheSolve(x)
+
+
 #The function makeCacheMatrix return a list of functions that
 #that is used to calculate the inverse of a square matrix.
 makeCacheMatrix <- function(x = matrix()) {
